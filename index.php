@@ -49,8 +49,8 @@ $result = mysqli_query($conn,$sql);
                             <td><?php echo $row['age']; ?></td>
                             <td><?php echo $row['roll']; ?></td>                         
                             <td>
-                                <a href="view.php" class="btn btn-primary btn-sm shadow">View</a>
-                                <a href="update.php" class="btn btn-warning btn-sm shadow">Edit</a>
+                                <a href="view.php?view=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm shadow">View</a>
+                                <a href="edit.php?edit=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm shadow">Edit</a>
                                 <a href="delete.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm shadow" onclick="return confirm('Are You Sure ?')">Delete</a>
                             </td>
                         </tr>
