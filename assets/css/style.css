@@ -1,3 +1,17 @@
 main{
     min-height: 87vh;
 }
+table .fa-trash-can{
+    color: tomato !important;
+}
+table .fa-pen-to-square{
+    color: rgb(133, 133, 1) !important;
+}
+.fa-eye{
+    color: rgb(68, 185, 0) !important;
+}
+.myicon::before{
+    content: url('../../i.png');
+    top: 0;
+    left: 0;
+}

@@ -1,13 +1,19 @@
 <?php 
-session_start();
 include("db.php");
 include("includes/navbar.php");
+session_start();
+
+if(!isset($_SESSION['login'])){
+    header("Location:auth/login.php");
+}
 
 $sql = "SELECT * FROM student ORDER BY id DESC";
 $result = mysqli_query($conn,$sql);
 
 ?>
     <main class="">
+        <a href="./auth/logout.php" class="btn btn-sm btn-danger">logout</a>
+    
         <div class="container">
             <div class="card mt-2">
             <?php 
@@ -27,8 +33,14 @@ $result = mysqli_query($conn,$sql);
                 <div class="card-body">
    
                     <div class="card-title text-muted fw-bold fs-2">Student Data Table</div>
-                    <a href="create.php" class="btn btn-success btn-sm fw-bold shadow">Add Data</a>
-                    <table class="table">
+                    <div class="d-flex justify-content-between">
+                        <a href="create.php" class="btn btn-success btn-sm fw-bold shadow">Add Data</a>
+                        <form class="d-flex">
+                            <input class="form-control me-2" id="myinput" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                    <table class="table" id="mytable">
                         <tr>
                             <th>S.L</th>
                             <th>ID</th>
@@ -49,9 +61,9 @@ $result = mysqli_query($conn,$sql);
                             <td><?php echo $row['age']; ?></td>
                             <td><?php echo $row['roll']; ?></td>                         
                             <td>
-                                <a href="view.php?view=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm shadow">View</a>
-                                <a href="edit.php?edit=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm shadow">Edit</a>
-                                <a href="delete.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm shadow" onclick="return confirm('Are You Sure ?')">Delete</a>
+                                <a href="view.php?view=<?php echo $row['id']; ?>" class="btn btn-sm shadow"><i class="fa-regular fa-eye"></i></a>
+                                <a href="edit.php?edit=<?php echo $row['id']; ?>" class="btn btn-sm shadow"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="delete.php?delete=<?php echo $row['id']; ?>" class="btn btn-sm shadow" onclick="return confirm('Are You Sure ?')"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                         <?php 
@@ -61,10 +73,11 @@ $result = mysqli_query($conn,$sql);
                         }
                         ?>
                     </table>
-                   
+                    <!-- <i class="myicon"></i> -->
                 </div>
             </div>
         </div>
+        
     </main>
 <?php 
 include("includes/footer.php");

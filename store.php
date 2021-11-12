@@ -7,7 +7,9 @@ include("db.php");
     $name = $_POST['name'];
     $age = $_POST['age'];
     $roll = $_POST['roll'];
+
         if(!empty($name) && !empty($age) && !empty($roll)){
+            
             $sql = "INSERT INTO student(id,name,age,roll) VALUES(NULL,'$name','$age','$roll')";
             $insertQuery = mysqli_query($conn,$sql);
 
