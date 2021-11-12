@@ -3,6 +3,7 @@ include("../includes/navbar.php");
 session_start();
 include("../db.php");
 
+
 if(isset($_POST['registerBtn'])){
 
     $name = $_POST['name'];
@@ -10,26 +11,32 @@ if(isset($_POST['registerBtn'])){
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
        
-
         if(!empty($name) && !empty($email) && !empty($password) && !empty($confirm_password)){
-
-        
 
             if($password != $confirm_password){
             
                 $_SESSION['error'] = " <div class=\"alert alert-danger\">Password Not Match</div>";
             }else{
 
-                $sql = "INSERT INTO users(id,name,email,password,confirm_password) VALUES(NULL,'$name','$email','$password','$confirm_password')";
-                $insertQuery = mysqli_query($conn,$sql);
-
-                if($insertQuery){
-                    $_SESSION['success'] = "<div class=\"alert alert-success\">Register successfully</div>";
+                $sql2 = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+                $result = mysqli_query($conn,$sql2);
                 
+                if(mysqli_num_rows($result)==1){
+                    $_SESSION['error'] = " <div class=\"alert alert-danger\">Email Already Exists</div>";
                 }else{
-                    $_SESSION['error'] = " <div class=\"alert alert-danger\">Error</div>";
-                
+
+                    $sql = "INSERT INTO users(id,name,email,password,confirm_password) VALUES(NULL,'$name','$email','$password','$confirm_password')";
+                    $insertQuery = mysqli_query($conn,$sql);
+
+                    if($insertQuery){
+                        $_SESSION['success'] = "<div class=\"alert alert-success\">Register successfully</div>";
+                    
+                    }else{
+                        $_SESSION['error'] = " <div class=\"alert alert-danger\">Error</div>";
+                    
+                    }
                 }
+
             }
 
         }else{
