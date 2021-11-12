@@ -1,19 +1,20 @@
 <?php 
+session_start();
+session_regenerate_id(true);
+
 include("db.php");
 include("includes/navbar.php");
-session_start();
 
-// if(!isset($_SESSION['login'])){
-//     header("Location:auth/login.php");
-// }
+if(!isset($_SESSION['login'])){
+    header("Location:auth/login.php");
+}
 
 $sql = "SELECT * FROM student ORDER BY id DESC";
 $result = mysqli_query($conn,$sql);
 
 ?>
     <main class="">
-        
-    
+
         <div class="container">
             <div class="card mt-2">
             <?php 

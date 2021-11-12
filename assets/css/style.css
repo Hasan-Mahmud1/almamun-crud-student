@@ -1,5 +1,6 @@
+
 main{
-    min-height: 87vh;
+    min-height: 82vh !important;
 }
 table .fa-trash-can{
     color: tomato !important;
@@ -14,4 +15,9 @@ table .fa-pen-to-square{
     content: url('../../i.png');
     top: 0;
     left: 0;
+}
+.navbar-nav .nav-link {
+    padding-right: 0;
+    padding-left: 0;
+    color: #fff;
 }
