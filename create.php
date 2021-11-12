@@ -3,6 +3,10 @@ session_start();
 include("db.php");
 include("includes/navbar.php");
 
+if(!isset($_SESSION['login'])){
+    header("Location:auth/login.php");
+}
+
 ?>
     <main class="">
         <div class="container">

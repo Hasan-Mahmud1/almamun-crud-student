@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,18 @@
         <div class="container">
             <div class="logo">
                 <a href="index.php" class="fw-bold fs-3 text-white navbar-brand">Home</a>
+            </div>
+            <div>
+                <?php if(isset($_SESSION['login'])){ ?>
+                
+                <a href="./auth/logout.php" class="btn btn-sm btn-danger">logout</a>
+
+                <?php }else{?>
+
+                    <a href="./auth/login.php" class="btn btn-sm btn-success">login</a>
+
+                <?php }?>
+
             </div>
           
         </div>
