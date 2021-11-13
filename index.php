@@ -4,8 +4,8 @@ session_regenerate_id(true);
 
 include("db.php");
 include("includes/navbar.php");
-
-if(!isset($_SESSION['login'])){
+//permision
+if(!isset($_SESSION['email'])){
     header("Location:auth/login.php");
 }
 
@@ -14,7 +14,6 @@ $result = mysqli_query($conn,$sql);
 
 ?>
     <main class="">
-
         <div class="container">
             <div class="card mt-2">
             <?php 
@@ -78,7 +77,6 @@ $result = mysqli_query($conn,$sql);
                 </div>
             </div>
         </div>
-        
     </main>
 <?php 
 include("includes/footer.php");

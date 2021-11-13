@@ -2,8 +2,10 @@
  session_start();
  include("db.php");
 
- if(!isset($_SESSION['login'])){
+ if(!isset($_SESSION['email'])){
+
     header("Location:auth/login.php");
+
 }else{
 
 

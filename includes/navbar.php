@@ -11,14 +11,14 @@
         <link rel="stylesheet" href="./assets/css/style.css">
     </head>
 
-    <body>
+    <body> 
         <header class="bg-primary bg-gradient py-3">
             <div class="container d-flex justify-content-between">
                 <div class="logo">
                     <a href="index.php" class="fw-bold fs-3 text-white navbar-brand">Home</a>
                 </div>
-                <div>
-                    <?php if(isset($_SESSION['login'])){ ?>
+                <div class="d-flex">
+                    <?php if(isset($_SESSION['email'])){ ?>
 
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
@@ -27,8 +27,12 @@
                                 <?php echo $_SESSION['name'];?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        
-                                <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                                <?php if(isset($_SESSION['admin'])){?>
+                                <li><a class="dropdown-item" href="./auth/dashboard.php">Dashboard</a></li>
+                                <?php }?>
+                                <?php if(isset($_SESSION['user'])){?>
+                                <li><a class="dropdown-item" href="./auth/dashboard2.php">Dashboard</a></li>
+                                <?php }?>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>                      
                                 <li><a class="dropdown-item" href="./auth/logout.php">logout</a></li>
                             </ul>
@@ -38,6 +42,7 @@
                     <?php }else{?>
 
                     <a href="./auth/login.php" class="text-white nav-link">login</a>
+                    <a href="./auth/register.php" class="text-white nav-link">register</a>
 
                     <?php }?>
 
@@ -45,3 +50,4 @@
 
             </div>
         </header>
+       
