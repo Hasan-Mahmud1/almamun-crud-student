@@ -2,18 +2,45 @@
 session_start();
 include("../db.php");
 
+$nameErr = $emailErr = $cpassError = "";
+$name = $email = $password = $confirm_password = "";
 
 if(isset($_POST['registerBtn'])){
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $name = test_input($_POST["name"]);
+    $email = test_input($_POST["email"]);
+    $password = test_input($_POST["password"]);
+    $confirm_password = test_input($_POST["confirm_password"]);
+    if($password != $confirm_password){
+        $cpassError = "Password Not Match";
+    }
+
+    if (empty($_POST["name"])) {
+        $nameErr = "Name is required";
+      } else {
+        $name = test_input($_POST["name"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+          $nameErr = "Only letters and white space allowed";
+        }
+      }
+      
+      if (empty($_POST["email"])) {
+        $emailErr = "Email is required";
+      } else {
+        $email = test_input($_POST["email"]);
+        // check if e-mail address is well-formed
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+          $emailErr = "Invalid email format";
+        }
+      }
+
+      
        
-        if(!empty($name) && !empty($email) && !empty($password) && !empty($confirm_password)){
+        if(empty($nameErr) && empty($emailErr) && empty($cpassError) &&!empty($name) && !empty($email) && !empty($password) && !empty($confirm_password)){
 
             if($password != $confirm_password){
-            
+                $cpassError = "Password Not Match";
                 $_SESSION['error'] = " <div class=\"alert alert-danger\">Password Not Match</div>";
             }else{
 
@@ -39,11 +66,18 @@ if(isset($_POST['registerBtn'])){
             }
 
         }else{
-            $_SESSION['error'] = "<div class=\"alert alert-danger\">Empty Field</div>";
-           
+            $_SESSION['error'] = "<div class=\"alert alert-danger\">Error or Empty Field</div>";
+            
         }  
 
-    }
+}
+
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+      }
 
 ?>
 <!DOCTYPE html>
@@ -102,22 +136,25 @@ if(isset($_POST['registerBtn'])){
                 <div class="card-body">
                     <div class="card-title text-muted fw-bold fs-2">User Register</div>    
 
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="name" class="forn-label">name :</label>
-                            <input type="name" name="name" class="form-control" placeholder="name">
+                            <input type="name" name="name" class="form-control" placeholder="name" value="<?php echo $name;?>">
+                            <span class="text-danger"><?php echo $nameErr;?></span>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="forn-label">email :</label>
-                            <input type="text" name="email" class="form-control" placeholder="email">
+                            <input type="text" name="email" class="form-control" placeholder="email" value="<?php echo $email;?>">
+                            <span class="text-danger"><?php echo $emailErr;?></span>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="forn-label">Password :</label>
-                            <input type="text" name="password" class="form-control" placeholder="password">
+                            <input type="text" name="password" class="form-control" placeholder="password" value="<?php echo $password;?>">
                         </div>
                         <div class="mb-3">
                             <label for="confirm_password" class="forn-label">Confirm Password :</label>
-                            <input type="text" name="confirm_password" class="form-control" placeholder="Confirm password">
+                            <input type="text" name="confirm_password" class="form-control" placeholder="Confirm password" value="<?php echo $confirm_password;?>">
+                            <span class="text-danger"><?php echo $cpassError;?></span>
                         </div>
                         <button type="submit" name="registerBtn" class="btn btn-success" >Signup</button>
 
