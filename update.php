@@ -15,10 +15,14 @@ if(isset($_POST['updateBtn'])){
     $updateData = mysqli_query($conn,$sql);
    
     if($updateData){
-        $_SESSION['success'] = "<div class=\"alert alert-success\">Data Updated successfully</div>";
+        $_SESSION['msg'] = "Data Updated successfully";
+        $_SESSION['msg_code'] = "success";
+       // $_SESSION['success'] = "<div class=\"alert alert-success\">Data Updated successfully</div>";
         header("Location:index.php");
     }else{
-        $_SESSION['error'] = " <div class=\"alert alert-danger\">Data Not update</div>";
+        $_SESSION['msg'] = "Somethings Wrong";
+        $_SESSION['msg_code'] = "error";
+       // $_SESSION['error'] = " <div class=\"alert alert-danger\">Data Not update</div>";
         header("Location:edit.php");
     }
         

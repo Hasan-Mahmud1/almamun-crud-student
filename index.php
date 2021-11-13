@@ -4,6 +4,7 @@ session_regenerate_id(true);
 
 include("db.php");
 include("includes/navbar.php");
+
 //permision
 if(!isset($_SESSION['email'])){
     header("Location:auth/login.php");

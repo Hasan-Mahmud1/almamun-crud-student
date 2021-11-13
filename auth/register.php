@@ -11,6 +11,7 @@ if(isset($_POST['registerBtn'])){
     $email = test_input($_POST["email"]);
     $password = test_input($_POST["password"]);
     $confirm_password = test_input($_POST["confirm_password"]);
+
     if($password != $confirm_password){
         $cpassError = "Password Not Match";
     }
@@ -37,32 +38,44 @@ if(isset($_POST['registerBtn'])){
 
       
        
-        if(empty($nameErr) && empty($emailErr) && empty($cpassError) &&!empty($name) && !empty($email) && !empty($password) && !empty($confirm_password)){
+        if(!empty($name) && !empty($email) && !empty($password) && !empty($confirm_password)){
 
-            if($password != $confirm_password){
-                $cpassError = "Password Not Match";
-                $_SESSION['error'] = " <div class=\"alert alert-danger\">Password Not Match</div>";
-            }else{
+            if(empty($nameErr) && empty($emailErr) && empty($cpassError)){
 
-                $sql2 = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-                $result = mysqli_query($conn,$sql2);
-                
-                if(mysqli_num_rows($result)==1){
-                    $_SESSION['error'] = " <div class=\"alert alert-danger\">Email Already Exists</div>";
+                if($password != $confirm_password){
+                    $cpassError = "Password Does Not Match";
+                    $_SESSION['msg'] = "Password Does Not Match";
+                    $_SESSION['msg_code'] = "error";
                 }else{
 
-                    $sql = "INSERT INTO users(id,name,email,password,confirm_password) VALUES(NULL,'$name','$email','$password','$confirm_password')";
-                    $insertQuery = mysqli_query($conn,$sql);
-
-                    if($insertQuery){
-                        $_SESSION['success'] = "<div class=\"alert alert-success\">Register successfully</div>";
+                    $sql2 = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+                    $result = mysqli_query($conn,$sql2);
                     
+                    if(mysqli_num_rows($result)==1){
+                        $_SESSION['msg'] = "This Email Alredy Taken.Please Try Another One.";
+                        $_SESSION['msg_code'] = "error";
                     }else{
-                        $_SESSION['error'] = " <div class=\"alert alert-danger\">Error</div>";
-                    
-                    }
-                }
 
+                        $sql = "INSERT INTO users(id,name,email,password,confirm_password) VALUES(NULL,'$name','$email','$password','$confirm_password')";
+                        $insertQuery = mysqli_query($conn,$sql);
+
+                        if($insertQuery){
+                            $_SESSION['msg'] = "Congrats! Registered successfully";
+                            $_SESSION['msg_code'] = "success";
+                        
+                        }else{
+                            $_SESSION['msg'] = "Error";
+                            $_SESSION['msg_code'] = "error";
+                            
+                        
+                        }
+                    }
+
+                }
+                
+            }else{
+                $_SESSION['msg'] = "Error";
+                $_SESSION['msg_code'] = "error";
             }
 
         }else{

@@ -14,7 +14,9 @@ include("db.php");
             $insertQuery = mysqli_query($conn,$sql);
 
             if($insertQuery){
-                $_SESSION['success'] = "<div class=\"alert alert-success\">Data insert successfully</div>";
+                $_SESSION['msg'] = "Congrats!Successfully Added";
+                $_SESSION['msg_code'] = "success";
+                
                 header("Location:index.php");
             }else{
                 $_SESSION['error'] = " <div class=\"alert alert-danger\">Data Not insert</div>";

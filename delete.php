@@ -15,7 +15,9 @@
         $sql = "DELETE FROM student WHERE id={$id}";
         $deleteData = mysqli_query($conn,$sql);
         if($deleteData){
-            $_SESSION['success'] = "<div class=\"alert alert-success\">Data Deleted successfully</div>";
+            $_SESSION['msg'] = "Data Deleted successfully";
+            $_SESSION['msg_code'] = "success";
+           
             header("Location:index.php");
         }
      }      
