@@ -4,10 +4,6 @@ session_start();
 include("includes/navbar.php");
 include("db.php");
 
-if(!isset($_SESSION['email'])){
-    header("Location:auth/login.php");
-}
-
 if(isset($_GET['view'])){
 
     $row['id'] = $_GET['view'];

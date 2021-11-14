@@ -19,7 +19,7 @@
                     <a href="index.php" class="fw-bold fs-3 text-white navbar-brand">Home</a>
                 </div>
                 <div class="d-flex">
-                    <?php if(isset($_SESSION['email'])){ ?>
+                    <?php if(isset($_SESSION['user_id'])){ ?>
 
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">

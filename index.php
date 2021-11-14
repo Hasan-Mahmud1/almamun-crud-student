@@ -7,7 +7,7 @@ include("db.php");
 include("includes/navbar.php");
 
 //permision
-if(!isset($_SESSION['email'])){
+if(!isset($_SESSION['user_id'])){
     header("Location:auth/login.php");
 }
 
@@ -91,10 +91,9 @@ $result = mysqli_query($conn,$sql);
                 $sql2 = "SELECT * FROM student";
                 $result2 = mysqli_query($conn,$sql2);
                 if($rows = mysqli_num_rows($result2)>0){
-
+                    
                    $total_record = mysqli_num_rows($result2);
-                   $total_page = ceil($total_record / $limit);
-                   echo "Total record ".$total_record." "."page ".$total_page;
+                   $total_page = ceil($total_record / $limit);  
 
                 ?>
                 <!-- paginasion -->

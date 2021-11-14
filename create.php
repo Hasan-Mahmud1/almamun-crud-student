@@ -4,9 +4,7 @@ session_start();
 include("db.php");
 include("includes/navbar.php");
 
-if(!isset($_SESSION['email'])){
-    header("Location:auth/login.php");
-}
+
 
 ?>
     <main class="">

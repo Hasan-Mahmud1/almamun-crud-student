@@ -37,15 +37,10 @@ include("../db.php");
                 if(isset($_SESSION['error'])){
 
                     echo $_SESSION['error'];
-                }
-            ?>
-            <?php 
-                if(isset($_SESSION['error'])){
-
                     unset($_SESSION['error']);
                 }
             ?>
-          
+                    
                 <div class="card-body">
                     <div class="card-title text-muted fw-bold fs-2">User Login</div>  
                         
@@ -58,7 +53,7 @@ include("../db.php");
                             <label for="age" class="forn-label">Password :</label>
                             <input type="text" name="password" class="form-control" placeholder=" password">
                         </div>
-                        <button type="submit" name="login" class="btn btn-success" >Login</button>
+                        <button type="submit" name="loginBtn" class="btn btn-success" >Login</button>
                         <a href="register.php">register</a>
                     </form>
                     

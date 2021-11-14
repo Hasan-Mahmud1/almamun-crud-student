@@ -4,21 +4,19 @@ session_start();
 include("db.php");
 include("includes/navbar.php");
 
-if(!isset($_SESSION['email'])){
-    header("Location:auth/login.php");
-}
 
-if(isset($_GET['edit'])){
+    if(isset($_GET['edit'])){
 
-    $row['id'] = $_GET['edit'];
-    $id = $row['id'];
-    $sql = "SELECT * FROM student WHERE id={$id}";
-    $result = mysqli_query($conn,$sql);
-    $row = mysqli_fetch_assoc($result);
-    $name = $row['name'];
-    $age = $row['age'];
-    $roll = $row['roll'];
-}
+        $row['id'] = $_GET['edit'];
+        $id = $row['id'];
+        $sql = "SELECT * FROM student WHERE id={$id}";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        $name = $row['name'];
+        $age = $row['age'];
+        $roll = $row['roll'];
+    }
+
 
 ?>
     <main class="">

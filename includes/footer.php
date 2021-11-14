@@ -23,7 +23,10 @@ swal({
 
 </html>
 
-
+<?php 
+    unset($_SESSION['msg']);
+    unset($_SESSION['msg_code']);
+?>
 <!-- // swal({
 //         title: "Are you sure?",
 //         text: "Once deleted, you will not be able to recover this imaginary file!",

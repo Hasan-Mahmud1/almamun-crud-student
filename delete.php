@@ -2,13 +2,7 @@
  session_start();
  include("db.php");
 
- if(!isset($_SESSION['email'])){
-
-    header("Location:auth/login.php");
-
-}else{
-
-
+if(isset($_SESSION['admin'])){
     if(isset($_GET['delete'])){
         $row['id'] = $_GET['delete'];
         $id = $row['id'];
@@ -21,8 +15,13 @@
             header("Location:index.php");
         }
      }      
-
+}else{
+    $_SESSION['msg'] = "No Permission";
+    $_SESSION['msg_code'] = "error";
+    
+    header("Location:index.php");
 }
+
 
 
  

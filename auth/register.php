@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include("../db.php");
+include("function.php");
 
 $nameErr = $emailErr = $cpassError = "";
 $name = $email = $password = $confirm_password = "";
@@ -25,7 +26,7 @@ if(isset($_POST['registerBtn'])){
           $nameErr = "Only letters and white space allowed";
         }
       }
-      
+      // !is_numeric($name);
       if (empty($_POST["email"])) {
         $emailErr = "Email is required";
       } else {
@@ -36,7 +37,6 @@ if(isset($_POST['registerBtn'])){
         }
       }
 
-      
        
         if(!empty($name) && !empty($email) && !empty($password) && !empty($confirm_password)){
 
@@ -55,8 +55,8 @@ if(isset($_POST['registerBtn'])){
                         $_SESSION['msg'] = "This Email Alredy Taken.Please Try Another One.";
                         $_SESSION['msg_code'] = "error";
                     }else{
-
-                        $sql = "INSERT INTO users(id,name,email,password,confirm_password) VALUES(NULL,'$name','$email','$password','$confirm_password')";
+                        $user_id = get_random_string(60);
+                        $sql = "INSERT INTO users(id,user_id,name,email,password,confirm_password) VALUES(NULL,'$user_id','$name','$email','$password','$confirm_password')";
                         $insertQuery = mysqli_query($conn,$sql);
 
                         if($insertQuery){
@@ -91,7 +91,7 @@ if(isset($_POST['registerBtn'])){
         $data = htmlspecialchars($data);
         return $data;
       }
-
+     // $name = $email = $password = $confirm_password = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">

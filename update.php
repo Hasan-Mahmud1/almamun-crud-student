@@ -2,9 +2,13 @@
 session_start();
 include("db.php");
 
-$row['id'] = $_GET['edit'];
-$id = $row['id'];
-
+if(!isset($_SESSION['admin'])){
+    $_SESSION['msg'] = "No Permesion";
+    $_SESSION['msg_code'] = "error";
+    header('Location:index.php');
+}else{
+    $row['id'] = $_GET['edit'];
+    $id = $row['id'];
 if(isset($_POST['updateBtn'])){
 
     $name = $_POST['name'];
@@ -30,5 +34,5 @@ if(isset($_POST['updateBtn'])){
     }
 
 
-
+}
 ?>
