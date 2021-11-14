@@ -1,4 +1,5 @@
 <?php 
+$title = "Edit";
 session_start();
 include("db.php");
 include("includes/navbar.php");
