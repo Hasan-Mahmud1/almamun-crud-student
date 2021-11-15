@@ -98,7 +98,7 @@ if(isset($_POST['registerBtn'])){
         $data = htmlspecialchars($data);
         return $data;
       }
-      $name = $email = $password = $confirm_password = "";
+// $name = $email = $password = $confirm_password = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -160,21 +160,21 @@ if(isset($_POST['registerBtn'])){
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="name" class="forn-label">name :</label>
-                            <input type="name" name="name" class="form-control" placeholder="name" value="<?php echo $name;?>">
+                            <input type="name" name="name" class="form-control" placeholder="name" value="<?php if(isset($name)) echo $name;?>">
                             <span class="text-danger"><?php echo $nameErr;?></span>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="forn-label">email :</label>
-                            <input type="text" name="email" class="form-control" placeholder="email" value="<?php echo $email;?>">
+                            <input type="text" name="email" class="form-control" placeholder="email" value="<?php if(isset($email)) echo $email;?>">
                             <span class="text-danger"><?php echo $emailErr;?></span>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="forn-label">Password :</label>
-                            <input type="text" name="password" class="form-control" placeholder="password" value="<?php echo $password;?>">
-                        </div>
-                        <div class="mb-3">
+                            <input type="text" name="password" class="form-control" placeholder="password" value="<?php if(isset($password)) echo $password;?>">
+                        </div> 
+                        <div class="mb-3"> 
                             <label for="confirm_password" class="forn-label">Confirm Password :</label>
-                            <input type="text" name="confirm_password" class="form-control" placeholder="Confirm password" value="<?php echo $confirm_password;?>">
+                            <input type="text" name="confirm_password" class="form-control" placeholder="Confirm password" value="<?php if(isset($confirm_password)) echo $confirm_password;?>">
                             <span class="text-danger"><?php echo $cpassError;?></span>
                         </div>
                         <button type="submit" name="registerBtn" class="btn btn-success" >Signup</button>
