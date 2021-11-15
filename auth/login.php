@@ -1,8 +1,10 @@
 <?php 
 session_start();
 include("../db.php");
+
 include("function.php");
 $_SESSION['token'] = get_random_string(60);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -4,11 +4,11 @@ include("../db.php");
 include("function.php");
 
 
-if(isset($_POST['loginBtn'])&& isset($_SESSION['token']) && $_SESSION['token']==$_POST['token']){
-
-        $tocken = $_POST['token'];
+if(isset($_POST['loginBtn']) && isset($_SESSION['token']) && $_SESSION['token']==$_POST['token']){
+    
+        $token = $_POST['token'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password = hash('sha1',$_POST['password']);
 
         $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
         $result = mysqli_query($conn,$sql);
@@ -16,6 +16,7 @@ if(isset($_POST['loginBtn'])&& isset($_SESSION['token']) && $_SESSION['token']==
         $row = mysqli_fetch_assoc($result);
 
         if(!empty($email) && !empty($password)){
+           
             if($rowcount == 1 && $row['email'] = $email &&  $row['password'] = $password){
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['name'] = $row['name'];
@@ -35,7 +36,7 @@ if(isset($_POST['loginBtn'])&& isset($_SESSION['token']) && $_SESSION['token']==
                 $_SESSION['msg_code'] = "error";
                 header('Location:login.php');
             }
-
+            
     }else{
      
         $_SESSION['msg'] = "Field Should not Eampty";
@@ -68,6 +69,7 @@ if(isset($_POST['loginBtn'])&& isset($_SESSION['token']) && $_SESSION['token']==
     
 
 }
+
 $_SESSION['token'] = get_random_string(60);
 
 ?>

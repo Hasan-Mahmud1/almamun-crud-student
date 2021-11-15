@@ -11,8 +11,11 @@ if(isset($_POST['registerBtn'])){
 
     $name = test_input($_POST["name"]);
     $email = test_input($_POST["email"]);
+    $password = test_input($_POST["password"]);
+    //$confirm_password = test_input($_POST["confirm_password"]);
     $password = hash('sha1',test_input($_POST["password"]));
     $confirm_password = hash('sha1',test_input($_POST["confirm_password"]));
+   
    // $confirm_password = test_input($_POST["confirm_password"]);
 
     if($password != $confirm_password){
@@ -59,7 +62,7 @@ if(isset($_POST['registerBtn'])){
                     }else{
                         $user_id = get_random_string(60);
 
-                        $sql = "INSERT INTO users(id,user_id,name,email,password,confirm_password) VALUES(NULL,'$user_id','$name','$email','$password','$confirm_password')";
+                        $sql = "INSERT INTO users(id,user_id,name,email,password) VALUES(NULL,'$user_id','$name','$email','$password')";
                         $insertQuery = mysqli_query($conn,$sql);
 
                         if($insertQuery){
