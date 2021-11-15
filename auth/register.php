@@ -3,6 +3,7 @@ session_start();
 include("../db.php");
 include("function.php");
 
+
 $nameErr = $emailErr = $cpassError = "";
 $name = $email = $password = $confirm_password = "";
 
@@ -10,8 +11,9 @@ if(isset($_POST['registerBtn'])){
 
     $name = test_input($_POST["name"]);
     $email = test_input($_POST["email"]);
-    $password = test_input($_POST["password"]);
-    $confirm_password = test_input($_POST["confirm_password"]);
+    $password = hash('sha1',test_input($_POST["password"]));
+    $confirm_password = hash('sha1',test_input($_POST["confirm_password"]));
+   // $confirm_password = test_input($_POST["confirm_password"]);
 
     if($password != $confirm_password){
         $cpassError = "Password Not Match";
@@ -53,9 +55,10 @@ if(isset($_POST['registerBtn'])){
                     
                     if(mysqli_num_rows($result)==1){
                         $_SESSION['msg'] = "This Email Alredy Taken.Please Try Another One.";
-                        $_SESSION['msg_code'] = "error";
+                        $_SESSION['msg_code'] = "error"; 
                     }else{
                         $user_id = get_random_string(60);
+
                         $sql = "INSERT INTO users(id,user_id,name,email,password,confirm_password) VALUES(NULL,'$user_id','$name','$email','$password','$confirm_password')";
                         $insertQuery = mysqli_query($conn,$sql);
 
@@ -79,7 +82,8 @@ if(isset($_POST['registerBtn'])){
             }
 
         }else{
-            $_SESSION['error'] = "<div class=\"alert alert-danger\">Error or Empty Field</div>";
+            $_SESSION['msg'] = "Empty Field";
+            $_SESSION['msg_code'] = "error";
             
         }  
 
@@ -91,7 +95,7 @@ if(isset($_POST['registerBtn'])){
         $data = htmlspecialchars($data);
         return $data;
       }
-     // $name = $email = $password = $confirm_password = "";
+      $name = $email = $password = $confirm_password = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,10 +1,12 @@
 <?php 
 session_start();
 include("../db.php");
+include("function.php");
 
-if(isset($_POST['loginBtn'])){
 
-      
+if(isset($_POST['loginBtn'])&& isset($_SESSION['token']) && $_SESSION['token']==$_POST['token']){
+
+        $tocken = $_POST['token'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
@@ -66,6 +68,6 @@ if(isset($_POST['loginBtn'])){
     
 
 }
-    
+$_SESSION['token'] = get_random_string(60);
 
 ?>

@@ -1,7 +1,8 @@
 <?php 
 session_start();
 include("../db.php");
-
+include("function.php");
+$_SESSION['token'] = get_random_string(60);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +54,7 @@ include("../db.php");
                             <label for="age" class="forn-label">Password :</label>
                             <input type="text" name="password" class="form-control" placeholder=" password">
                         </div>
+                        <input type="hidden" name="token" value="<?php if(isset($_SESSION['token'])) echo $_SESSION['token']; ?>">
                         <button type="submit" name="loginBtn" class="btn btn-success" >Login</button>
                         <a href="register.php">register</a>
                     </form>
