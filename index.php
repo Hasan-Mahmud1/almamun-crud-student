@@ -96,6 +96,7 @@ $result = mysqli_query($conn,$sql);
                    $total_page = ceil($total_record / $limit);  
 
                 ?>
+	<div>Showing <?php echo $page;?> of <?php echo $total_page;?></div>	
                 <!-- paginasion -->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">

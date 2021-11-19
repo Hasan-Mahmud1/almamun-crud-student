@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2021 at 05:09 PM
+-- Generation Time: Nov 19, 2021 at 12:45 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -40,7 +40,11 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `name`, `age`, `roll`, `date`) VALUES
-(1, 'Hasan Mahmud Khan', 19, 2, '2021-11-15 12:55:53');
+(1, 'Hasan Mahmud Khan', 19, 2, '2021-11-15 12:55:53'),
+(2, 'Hasan Khan', 18, 6, '2021-11-18 09:22:43'),
+(3, 'Hasan', 19, 7, '2021-11-18 09:22:54'),
+(4, 'sumon', 20, 9, '2021-11-18 09:23:15'),
+(5, 'Mahmud', 20, 10, '2021-11-18 09:23:31');
 
 -- --------------------------------------------------------
 
@@ -66,7 +70,8 @@ INSERT INTO `users` (`id`, `user_id`, `name`, `email`, `password`, `date`, `role
 (10, 'zYIfOWOKoskPEYZ6IMyES8ft2U6L0OJEvGgbFVXg5ebR', 'Hasan Mahmud Khan', 'mrj6458@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2021-11-15 13:03:44', 1),
 (11, 'JibK40tT5CVUGgPygOZRWDkmAXK2gQRn', 'Khan Mahmud', 'khan@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '2021-11-15 13:03:08', 0),
 (12, 'OKEDDjQozVG7BUAm4bnbg54dN7OL', 'Sumon', 'sumon@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '2021-11-15 13:03:31', 0),
-(13, 't5OqoJ', 'Hasan Mahmud Khan', 'mrj6458fsfs@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2021-11-15 14:38:13', 0);
+(16, 'XOonV4zgEAbk66lgTEMpYZDuI9lqu8I8RxSfgoq8EL3VPRA4n9n5', 'Mahmud Khan', 'mrj@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2021-11-18 09:20:12', 0),
+(17, 'V7nyCHRauMFGVKz63WSr', 'Mahmud Khan', 'hasanmrj6458@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2021-11-18 09:20:33', 0);
 
 --
 -- Indexes for dumped tables
@@ -92,13 +97,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
